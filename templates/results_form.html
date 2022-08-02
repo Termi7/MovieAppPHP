@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>myMovies Xpress! - Search Results</title>
+		<link rel="stylesheet" type="text/css" href="css/mySite.css" />
+		<script src="./script.js"></script>
+	</head>
+	<body>
+		<h3>Welcome, <?= $_SESSION["displayName"] ?> (<a href="javascript: confirmLogout()">logout</a>)</h3>
+		<h1>myMovies Xpress!</h1>
+
+
+	<?php 
+	// $result =  displaySearchResults() ;
+	 
+     
+	
+	// $searchString = result[0];
+	//  $value = result[1];
+	//   $resultsArray = count(resultsArray);
+	 ?>
+    
+
+	  <h3>
+		<?php echo count( $resultsArray); ?> movies found for the keyword:
+		<?php echo $searchString; ?>
+	  </h3>
+
+	<?php if ($resultsArray > 2){ ?>
+		<table class="movieSearch">
+			<tr>
+			  <th class="movieSearch">Poster</th>
+			  <th class="movieSearch">Title (Year)</th>
+			  <th class="movieSearch">Add Movie</th>
+			</tr>
+
+	<?php foreach($resultsArray as $result ) {  
+		$poster = $result["Poster"];
+
+	?>
+
+	<tr>
+        <td class="movieSearch">
+          <img src="<?php echo $poster ?>"  height="100">
+        </td>
+
+        <?php 
+
+		 $indexKeyValue  = $result["imdbID"];
+		?>
+		
+		<td class="movieSearch"><a href="https://www.imdb.com/title/<?php echo $indexKeyValue ?>/" target="_blank"><?php echo $result["Title"]?> (<?php echo $result["Year"]?>)</a></td>
+        
+		
+		
+        
+		
+
+		<td class="movieSearch"><a href="javascript: addMovie('<?php echo $indexKeyValue?>')">+</a></td>
+
+         
+		<?php }  } 
+		
+	    else{ ?>
+
+			<input type="button" value="Cancel" onclick="javascript: confirmCancel()"/>
+
+		
+		<?php } ?>
+
+        
+		
+      </tr>
+
+	   
+
+
+
+
+<!-- [count] movies found for the keyword: [keyword] -->
+
+<!-- DO NOT REMOVE OR MODIFY THE CODE OR PLACE YOUR CODE BELOW THIS LINE -->
+	</body>
+</html>
